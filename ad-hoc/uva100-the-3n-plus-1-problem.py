@@ -1,4 +1,7 @@
 
+# uva100 The 3n+1 problem
+# https://uva.onlinejudge.org/index.php?Itemid=8&option=com_onlinejudge&page=show_problem&problem=36
+
 def cycle_length(n):
 
     def cycle(n, param_count):
@@ -39,5 +42,6 @@ def max_cycle_length(first, second):
     return "%d, %d, %d" %  (iterator_number, second, max_value)
 
 print max_cycle_length(1, 10)
-# print "count is ", count
-
+print max_cycle_length(100, 200)
+print max_cycle_length(201, 210)
+print max_cycle_length(900, 1000)
