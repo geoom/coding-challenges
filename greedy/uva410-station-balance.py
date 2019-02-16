@@ -1,7 +1,12 @@
-# uva100 Station Balance
+# uva410 Station Balance
 # https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=351
 
 
+""" 
+get mass quantity for each chamber assuming there are 2*C chambers
+new masses will have weight 0
+this collection must be sorted in ascending order 
+"""
 def masses_collection(input, chambers_quantity, specimens_quantity):
     
     spec_masses_from_input = input[2: 2 + specimens_quantity]
@@ -12,32 +17,34 @@ def masses_collection(input, chambers_quantity, specimens_quantity):
 
     return spec_masses_collection
 
-
-def chambers_assisgments(spec_masses, chambers_quantity):
+"""
+Set specimen mass assignments for each chamber
+"""
+def chambers_assignments(spec_masses, chambers_quantity):
     
-    assisgments = []
+    assignments = []
     
     for idx in range(chambers_quantity):
             
-        assigment_on_chamber = [
+        assignment_on_chamber = [
             spec_masses[idx],
             spec_masses[-(idx + 1)]
         ]
 
-        assisgments.append(assigment_on_chamber)
+        assignments.append(assignment_on_chamber)
 
-    return assisgments
+    return assignments
 
 
 def average_chamber_mass(spec_masses_collection, chambers_quantity):
     return float(sum(spec_masses_collection))/float(chambers_quantity)
 
 
-def imbalance(assisgments, spec_masses_collection, chambers_quantity):
+def imbalance(assignments, spec_masses_collection, chambers_quantity):
     imbalance = 0
 
-    for idx in range(len(assisgments)):
-        imbalance = imbalance + abs(total_chamber_mass(assisgments[idx]) - average_chamber_mass(spec_masses_collection, chambers_quantity))
+    for idx in range(len(assignments)):
+        imbalance = imbalance + abs(total_chamber_mass(assignments[idx]) - average_chamber_mass(spec_masses_collection, chambers_quantity))
 
     return imbalance
 
@@ -45,7 +52,7 @@ def imbalance(assisgments, spec_masses_collection, chambers_quantity):
 def total_chamber_mass(specimens_masses):
     return sum(specimens_masses)
 
-
+# init function
 def process_set_input(array_inputs):
 
     for idx, input in enumerate(array_inputs):
@@ -59,17 +66,17 @@ def process_set_input(array_inputs):
             input, chambers_quantity, specimens_quantity
         )
 
-        assisgments_collection = chambers_assisgments(
+        assignments_collection = chambers_assignments(
             spec_masses_collection, chambers_quantity
         )
 
-        for idx in range(len(assisgments_collection)):
+        for idx in range(len(assignments_collection)):
             print "%d: %s" % (
                     idx, 
-                    ' '.join([ str(el) for el in filter(lambda mass: mass != 0, assisgments_collection[idx])])
+                    ' '.join([ str(el) for el in filter(lambda mass: mass != 0, assignments_collection[idx])])
                 )
 
-        print "IMBALANCE = %s \n" % '{:.5f}'.format(imbalance(assisgments_collection, spec_masses_collection, chambers_quantity))
+        print "IMBALANCE = %s \n" % '{:.5f}'.format(imbalance(assignments_collection, spec_masses_collection, chambers_quantity))
         
 # Exec
 data_input = [
