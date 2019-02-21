@@ -1,3 +1,5 @@
+#!/usr/bin/python2.7
+
 # uva410 Station Balance
 # https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=351
 
@@ -78,11 +80,14 @@ def process_set_input(array_inputs):
 
         print "IMBALANCE = %s \n" % '{:.5f}'.format(imbalance(assignments_collection, spec_masses_collection, chambers_quantity))
         
-# Exec
-data_input = [
-    [ 2, 3, 6, 3, 8 ],
-    [ 3, 5, 51, 19, 27, 14, 33],
-    [5, 9, 1, 2, 3, 5, 7, 11, 13, 17, 19]
-]
 
-process_set_input(data_input)
+if __name__ == '__main__':
+
+    # Exec
+    data_input = [
+        [ 2, 3, 6, 3, 8 ],
+        [ 3, 5, 51, 19, 27, 14, 33],
+        [5, 9, 1, 2, 3, 5, 7, 11, 13, 17, 19]
+    ]
+
+    process_set_input(data_input)
